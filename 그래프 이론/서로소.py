@@ -1,7 +1,7 @@
 def find_parent(parent, x):
   if parent[x] != x:
     parent[x] = find_parent(parent,parent[x])
-  return x
+  return parent[x]
 
 def union_parent(parent, a,b):
   a = find_parent(parent,a)
@@ -30,5 +30,3 @@ print()
 print('부모 테이블: ',end=' ')
 for i in range(1,v+1):
   print(parent[i],end=' ')
-
-
