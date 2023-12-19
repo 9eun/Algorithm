@@ -15,3 +15,5 @@ for plan in plans:
       continue
     x,y = nx,ny
 print(x,y)
+
+
