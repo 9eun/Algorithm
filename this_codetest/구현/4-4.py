@@ -29,10 +29,12 @@ while True:
     y = ny
     count += 1
     turn_time = 0
+
   else:
     turn_time += 1
-
+  
   if turn_time == 4:
+  
     nx = x - dx[direction]
     ny = y - dy[direction]
     turn_time = 0
