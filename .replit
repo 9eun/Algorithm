@@ -1,4 +1,4 @@
-entrypoint = "this_codetest/구현/문자열재정렬.py"
+entrypoint = "1.py"
 modules = ["python-3.10:v18-20230807-322e88b"]
 
 hidden = [".pythonlibs"]
