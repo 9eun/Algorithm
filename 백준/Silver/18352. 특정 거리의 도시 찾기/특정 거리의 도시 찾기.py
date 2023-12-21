@@ -1,33 +1,25 @@
 from collections import deque
 import sys
 input=sys.stdin.readline
-
-n,m,k,x=map(int,input().split())
-
-graph=[[] for _ in range(n+1)]
-
+n,m,k,x = map(int,input().split())
+graph = [[] for _ in range(n+1)]
 for _ in range(m):
-	a,b=map(int,input().split())
-	graph[a].append(b)
+  a,b = map(int,input().split())
+  graph[a].append(b)
+distance = [-1] * (n+1)
+distance[x] = 0
 
-d=[-1]*(n+1)
-d[x]=0
-q=deque([x])
-
+q = deque([x])
 while q:
-	now=q.popleft()
-
-	for x in graph[now]:
-		if d[x]==-1:
-			d[x]=d[now]+1
-			q.append(x)
-
-count=0
-
+  now = q.popleft()
+  for i in graph[now]:
+    if distance[i]== -1:
+      distance[i] = distance[now]+1
+      q.append(i)
+check = False
 for i in range(1,n+1):
-	if d[i]==k:
-		print(i)
-		count+=1
-
-if count==0:
-	print(-1)
+  if distance[i] == k:
+    print(i)
+    check = True
+if check == False:
+  print(-1)
