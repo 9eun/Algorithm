@@ -1,27 +1,46 @@
-from itertools import combinations
+from collections import deque
+n,l,r = map(int,input().split())
+arr = [list(map(int,input().split()))for _ in range(n)]
 
-n,m = map(int,input().split())
-chicken=[]
-house=[]
+dx = [-1,0,1,0]
+dy = [0,1,0,-1]
 
-for i in range(n):
-  arr = list(map(int,input().split()))
-  for c in range(n):
-    if arr[c]==1:
-      house.append((i,c))
-    elif arr[c]==2:
-      chicken.append((i,c))
-combv = list(combinations(chicken,m))
-def sum(combv):
-  result = 0
-  for hx,hy in house:
-    temp = 1e9
-    for cx, cy in combv:
-      temp = min(temp,abs(hx-cx)+abs(hy-cy))
-    result+=temp
-  return result
+def bfs(i,j):
+  q=deque()
+  q.append((i,j))
+  united=[]
+  united.append((i,j))
+  while q:
+    x,y = q.popleft()
+    for i in range(4):
+      nx=x+dx[i]
+      ny=y+dy[i]
+      
+      if 0<=nx<n and 0<=ny<n and visited[nx][ny]==-1:
+        if l<=(abs(arr[x][y]-arr[nx][ny]))<=r:
+          visited[nx][ny]=1
+          united.append((nx,ny))
+          q.append((nx,ny))
+      
+  return united
 
-result = 1e9
-for com in combv:
-  result = min(result, sum(com))
+result = 0
+while True:
+  flag=False
+  visited=[[-1]*n for _ in range(n)]
+  for i in range(n):
+    for j in range(n):
+      if visited[i][j]==-1:
+        visited[i][j]=1
+        ans = bfs(i,j)
+
+        if len(ans)>1:
+          
+          flag=True 
+          move = sum(arr[i][j]for i,j in ans)//len(ans)
+          for g,h in ans:
+            arr[g][h]=move
+  if not flag:
+    break
+  result+=1
 print(result)
