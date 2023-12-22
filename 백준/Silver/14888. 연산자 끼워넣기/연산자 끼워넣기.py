@@ -1,5 +1,5 @@
 from itertools import permutations
-
+from collections import deque
 import sys
 input = sys.stdin.readline
 n = int(input())
@@ -13,8 +13,10 @@ data.extend(['-']*s)
 data.extend(['*']*m)
 data.extend(['/']*d)
 
-cals = list(permutations(data))
-for cal in cals:
+data1 = list(set(permutations(data)))
+q = deque(data1)
+while q:
+  cal = q.popleft()
   answer = arr[0]
   arr1 = arr[1:]
   for i in range(n-1):
