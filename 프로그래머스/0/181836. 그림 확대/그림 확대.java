@@ -6,14 +6,10 @@ class Solution {
             String a = "";
             
             for(char c : s.toCharArray()){
-                for(int i=0;i<k;i++){
-                    a+=c;
-                }
+                a+=String.valueOf(c).repeat(k);
             }
-            for(int i=0;i<k;i++){
-                String b = "";
-                b+=a;
-                list.add(b);
+            for (int j = 0; j < k; j++) {
+                list.add(a);
             }
             
         }
